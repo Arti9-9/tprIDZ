@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\FunctionalUnitRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,21 @@ class FunctionalUnit
      * @ORM\Column(type="datetime")
      */
     private $date;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Equipment::class, inversedBy="units")
+     */
+    private $equipment;
+
+    /**
+     * @ORM\OneToMany(targetEntity=groupParameter::class, mappedBy="functionalUnit")
+     */
+    private $parameters;
+
+    public function __construct()
+    {
+        $this->parameters = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -86,6 +103,48 @@ class FunctionalUnit
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getEquipment(): ?Equipment
+    {
+        return $this->equipment;
+    }
+
+    public function setEquipment(?Equipment $equipment): self
+    {
+        $this->equipment = $equipment;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|groupParameter[]
+     */
+    public function getParameters(): Collection
+    {
+        return $this->parameters;
+    }
+
+    public function addParameter(groupParameter $parameter): self
+    {
+        if (!$this->parameters->contains($parameter)) {
+            $this->parameters[] = $parameter;
+            $parameter->setFunctionalUnit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParameter(groupParameter $parameter): self
+    {
+        if ($this->parameters->removeElement($parameter)) {
+            // set the owning side to null (unless already changed)
+            if ($parameter->getFunctionalUnit() === $this) {
+                $parameter->setFunctionalUnit(null);
+            }
+        }
 
         return $this;
     }

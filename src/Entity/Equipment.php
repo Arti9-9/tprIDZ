@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EquipmentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +43,16 @@ class Equipment
      * @ORM\Column(type="datetime")
      */
     private $date;
+
+    /**
+     * @ORM\OneToMany(targetEntity=functionalUnit::class, mappedBy="equipment")
+     */
+    private $units;
+
+    public function __construct()
+    {
+        $this->units = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -103,6 +115,36 @@ class Equipment
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|functionalUnit[]
+     */
+    public function getUnits(): Collection
+    {
+        return $this->units;
+    }
+
+    public function addUnit(functionalUnit $unit): self
+    {
+        if (!$this->units->contains($unit)) {
+            $this->units[] = $unit;
+            $unit->setEquipment($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUnit(functionalUnit $unit): self
+    {
+        if ($this->units->removeElement($unit)) {
+            // set the owning side to null (unless already changed)
+            if ($unit->getEquipment() === $this) {
+                $unit->setEquipment(null);
+            }
+        }
 
         return $this;
     }

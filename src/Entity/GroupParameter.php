@@ -27,6 +27,11 @@ class GroupParameter
      */
     private $weight;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=FunctionalUnit::class, inversedBy="parameters")
+     */
+    private $functionalUnit;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,18 @@ class GroupParameter
     public function setWeight(float $weight): self
     {
         $this->weight = $weight;
+
+        return $this;
+    }
+
+    public function getFunctionalUnit(): ?FunctionalUnit
+    {
+        return $this->functionalUnit;
+    }
+
+    public function setFunctionalUnit(?FunctionalUnit $functionalUnit): self
+    {
+        $this->functionalUnit = $functionalUnit;
 
         return $this;
     }
