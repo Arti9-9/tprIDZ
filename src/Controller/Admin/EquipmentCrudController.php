@@ -13,11 +13,7 @@ class EquipmentCrudController extends AbstractCrudController
     {
         return Equipment::class;
     }
-    public function configureActions(Actions $actions): Actions
-    {
-        return $actions
-            ->disable(Action::NEW, Action::DELETE);
-    }
+  
     /*
     public function configureFields(string $pageName): iterable
     {
