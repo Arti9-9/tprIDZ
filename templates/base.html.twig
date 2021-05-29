@@ -14,29 +14,13 @@
     {{ encore_entry_script_tags('app') }}
     {% endblock %}
     </head>
-    <body>
+     
+    <body class="bg-info">
         <header
-            class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between mb-4 border-bottom">
-            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="/" class="nav-link px-2 link-secondary">Домашняя страница</a></li>
-                <li><a href="/about" class="nav-link px-2 link-dark">Страница о проекте</a></li>
-            </ul>
-            
-            {% if app.user %}
+            class=" d-flex flex-wrap align-items-center justify-content-center justify-content-md-between mb-4 border-bottom">
             <div class="mb-3">
-                Привет, {{ app.user.name }} 
-                {% if is_granted('ROLE_ADMIN') %}
-                     <a class="btn btn-outline-primary me-2">Admin panel</a>
-                {% endif %}
-                <a href="{{ path('app_logout') }}" class="btn btn-outline-primary mx-2" >Выход</a>
+                     <a href="{{ path('admin') }}" class="btn btn-outline-primary me-2">Admin panel</a>
             </div>
-            {% else %}
-            <div class="col-md-2 text-end">
-                <a class="btn btn-outline-primary me-2">Вход</a>
-                <a class="btn btn-primary   ">Регистрация</a>
-            </div>
-            {% endif %}
         </header>
-    {% block body %}{% endblock %}
     </body>
 </html>
