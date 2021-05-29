@@ -4,7 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Equipment;
 use App\Entity\FunctionalUnit;
-
+use App\Entity\GroupParameter;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Router\CrudUrlGenerator;
@@ -33,8 +33,8 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linktoRoute('Dashboard', 'fa fa-home' ,'home');
-        yield MenuItem::linkToDashboard('Equipment', 'fas fa-cog', Equipment::class);
-        yield MenuItem::linkToDashboard('FunctionalUnit', 'fa fa-bar-chart', FunctionalUnit::class);
-        yield MenuItem::linkToDashboard('GroupParameter', 'fas fa-users', GroupParameter::class);
+        yield MenuItem::linkToCrud('Equipment', 'fas fa-cog', Equipment::class);
+        yield MenuItem::linkToCrud('FunctionalUnit', 'fa fa-bar-chart', FunctionalUnit::class);
+        yield MenuItem::linkTocrud('GroupParameter', 'fas fa-users', GroupParameter::class);
     }
 }
