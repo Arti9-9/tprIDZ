@@ -45,7 +45,7 @@ class FunctionalUnit
     private $equipment;
 
     /**
-     * @ORM\OneToMany(targetEntity=groupParameter::class, mappedBy="functionalUnit")
+     * @ORM\OneToMany(targetEntity=GroupParameter::class, mappedBy="functionalUnit")
      */
     private $parameters;
 

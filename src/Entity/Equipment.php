@@ -45,7 +45,7 @@ class Equipment
     private $date;
 
     /**
-     * @ORM\OneToMany(targetEntity=functionalUnit::class, mappedBy="equipment")
+     * @ORM\OneToMany(targetEntity=FunctionalUnit::class, mappedBy="equipment")
      */
     private $units;
 
@@ -120,14 +120,14 @@ class Equipment
     }
 
     /**
-     * @return Collection|functionalUnit[]
+     * @return Collection|functional[]
      */
     public function getUnits(): Collection
     {
         return $this->units;
     }
 
-    public function addUnit(functionalUnit $unit): self
+    public function addUnit(functional $unit): self
     {
         if (!$this->units->contains($unit)) {
             $this->units[] = $unit;
@@ -137,7 +137,7 @@ class Equipment
         return $this;
     }
 
-    public function removeUnit(functionalUnit $unit): self
+    public function removeUnit(functional $unit): self
     {
         if ($this->units->removeElement($unit)) {
             // set the owning side to null (unless already changed)
