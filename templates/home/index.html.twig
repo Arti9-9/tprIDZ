@@ -3,8 +3,30 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+
+    <h1>
+    <center>TPR</center>
+    </h1> 
+    <div class="container">
+        <div class="row row-cols-4 mr-3">
+            {% for Equipment in Equipment %}
+                <div class="col mb-5">
+                    <div class="card bg-light" style="height:300px;">
+                        <div class="card-body">
+                            <a  href="{{ path('equipment_show', {'id': Equipment.id}) }}"" class="card-link ">
+                            <h5 style="overflow-Y: auto; height:10%;">{{ Equipment.name }}</h5></a>
+                            <p>TechicalIndex:</p>
+                            <p>Reliability:</p>
+                            <p class="card-text border-top border-bottom" style="overflow-Y: auto; height:45%;">{{ Equipment.description }}</p>
+                            Дата публикации:   
+                            <span class="ml-4 mb-3 card-text ">{{ Equipment.date ? Equipment.date|date('Y-m-d H:i:s') : '' }}</span>
+                        </div>
+                    </div>  
+                </div>
+            {% else %}
+            
+                
+             {% endfor %}
+        </div>
+    </div>
 {% endblock %}
