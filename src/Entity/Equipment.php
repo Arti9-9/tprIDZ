@@ -49,6 +49,11 @@ class Equipment
      */
     private $units;
 
+    public function __toString()
+    {
+        return (string)$this->getName();
+    }
+
     public function __construct()
     {
         $this->units = new ArrayCollection();

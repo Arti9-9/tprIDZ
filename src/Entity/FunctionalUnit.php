@@ -49,6 +49,11 @@ class FunctionalUnit
      */
     private $parameters;
 
+    public function __toString()
+    {
+        return (string)$this->getName();
+    }
+
     public function __construct()
     {
         $this->parameters = new ArrayCollection();
