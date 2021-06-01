@@ -3,34 +3,34 @@
 {% block title %}Equipment{% endblock %}
 
 {% block body %}
-    <h1>Equipment</h1>
+    <h1>Оборудование</h1>
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ equipment.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ equipment.name }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ equipment.description }}</td>
-            </tr>
-            <tr>
-                <th>TechicalIndex</th>
-                <td>{{ equipment.techicalIndex }}</td>
-            </tr>
-            <tr>
-                <th>Reliability</th>
-                <td>{{ equipment.reliability }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ equipment.date ? equipment.date|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
+        <tr>
+            <th>Наименование оборудования</th>
+            <td>{{ equipment.name }}</td>
+        </tr>
+        <tr>
+            <th>Описание</th>
+            <td>{{ equipment.description }}</td>
+        </tr>
+        <tr>
+            <th>Технический индекс</th>
+            <td>{{ equipment.techicalIndex }}</td>
+        </tr>
+        <tr>
+            <th>Оценка</th>
+            <td>{{ equipment.reliability }}</td>
+        </tr>
+        <tr>
+            <th>Дата</th>
+            <td>{{ equipment.date ? equipment.date|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th>График</th>
+            <td>{{  render_chart(chart)  }}</td>
+        </tr>
         </tbody>
     </table>
 

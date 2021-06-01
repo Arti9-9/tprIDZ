@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\FunctionalUnit;
 use App\Repository\EquipmentRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -125,14 +126,14 @@ class Equipment
     }
 
     /**
-     * @return Collection|functional[]
+     * @return Collection|FunctionalUnit[]
      */
     public function getUnits(): Collection
     {
         return $this->units;
     }
 
-    public function addUnit(functional $unit): self
+    public function addUnit(FunctionalUnit $unit): self
     {
         if (!$this->units->contains($unit)) {
             $this->units[] = $unit;
@@ -142,7 +143,7 @@ class Equipment
         return $this;
     }
 
-    public function removeUnit(functional $unit): self
+    public function removeUnit(FunctionalUnit $unit): self
     {
         if ($this->units->removeElement($unit)) {
             // set the owning side to null (unless already changed)

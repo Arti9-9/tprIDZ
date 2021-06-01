@@ -27,14 +27,14 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Tpr');
+            ->setTitle('ИДЗ ТПР');
     }
 
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linktoRoute('Dashboard', 'fa fa-home' ,'home');
-        yield MenuItem::linkToCrud('Equipment', 'fas fa-cog', Equipment::class);
-        yield MenuItem::linkToCrud('FunctionalUnit', 'fa fa-bar-chart', FunctionalUnit::class);
-        yield MenuItem::linkTocrud('GroupParameter', 'fas fa-users', GroupParameter::class);
+        yield MenuItem::linkToCrud('Оборудование', 'fas fa-cog', Equipment::class);
+        yield MenuItem::linkToCrud('Функциональный узел', 'fa fa-bar-chart', FunctionalUnit::class);
+        yield MenuItem::linkTocrud('Параметры группы', 'fas fa-users', GroupParameter::class);
     }
 }
