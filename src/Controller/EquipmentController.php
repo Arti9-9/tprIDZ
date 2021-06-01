@@ -57,7 +57,7 @@ class EquipmentController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $a = $form->get('units')->getData()->getId();
+            $a = $form->get('units')->getData();
             $equipment->addUnit($form->get('units')->getData());
             $this->getDoctrine()->getManager()->flush();
 
