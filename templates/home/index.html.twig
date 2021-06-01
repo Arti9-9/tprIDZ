@@ -11,7 +11,7 @@
         <div class="row row-cols-4 mr-3">
             {% for Equipment in Equipment %}
                 <div class="col mb-5">
-                    <div class="card bg-light" style="height:300px;">
+                    <div class="card bg-light" style="height:350px;">
                         <div class="card-body">
                             <a  href="{{ path('equipment_show', {'id': Equipment.id}) }}"" class="card-link ">
                             <h5 style="overflow-Y: auto; height:10%;">{{ Equipment.name }}</h5></a>
