@@ -51,13 +51,13 @@ class EquipmentController extends AbstractController
     {
         $chart = $chartBuilder->createChart(Chart::TYPE_LINE);
         $chart->setData([
-            'labels' => ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            'labels' => ['2017', '2018', '2019', '2020', '2021', '2022', '2023'],
             'datasets' => [
                 [
-                    'label' => 'My First dataset',
-                    'backgroundColor' => 'rgb(255, 99, 132)',
+                    'label' => $equipment->getName(),
+                    'backgroundColor' => 'rgb(255, 75, 15)',
                     'borderColor' => 'rgb(255, 99, 132)',
-                    'data' => [0, 10, 5, 2, 20, 30, 45],
+                    'data' => [99.2, 98.5, 97.2, 92.5, 93.0, 92.5, 90.2],
                 ],
             ],
         ]);
