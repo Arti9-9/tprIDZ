@@ -3,28 +3,34 @@
 {% block title %}TechicalIndexs{% endblock %}
 
 {% block body %}
-    <h1>TechicalIndexs</h1>
+    <h1>Технический индекс</h1>
 
     <table class="table">
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ techical_index.id }}</td>
-            </tr>
-            <tr>
                 <th>Value</th>
-                <td>{{ techical_index.value }}</td>
-            </tr>
-            <tr>
                 <th>Date</th>
-                <td>{{ techical_index.date ? techical_index.date|date('Y-m-d') : '' }}</td>
             </tr>
+            
+                 {% for index in techical_index %}
+                 <tr>
+                 <td>{{ index.id }}</td>
+                 <td>{{ index.value }}</td>
+                 <td>{{ index.date ? index.date|date('Y-m-d') : '' }}</td>
+                 <td>
+                  <a href="{{ path('techical_indexs_edit', {'id': index.id}) }}">edit </a>
+                  </td>
+                   <td>
+                  <a href="{{ path('techical_indexs_delete', {'id': index.id}) }}">delete </a>
+                  </td>
+                </tr>
+                 {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('techical_indexs_index') }}">back to list</a>
+    <a href="{{ path('techical_indexs_index') }}">back to list</a><br>
+  
 
-    <a href="{{ path('techical_indexs_edit', {'id': techical_index.id}) }}">edit</a>
-
-    {{ include('techical_indexs/_delete_form.html.twig') }}
+    
 {% endblock %}

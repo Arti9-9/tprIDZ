@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use App\Entity\Equipment;
+use App\Entity\TechicalIndexs;
 use App\Form\EquipmentType;
 use App\Repository\EquipmentRepository;
 use App\Repository\FunctionalUnitRepository;
@@ -107,6 +108,7 @@ class EquipmentController extends AbstractController
             'equipment' => $equipment,
             'functionalUnit' => $functionalUnit->findBy(['equipment' => $equipment]),
             'techical_index' => $indexs,
+            'reabilities' => $reliability,
             'chartTech' => $chart,
             'chartRel' => $chartRel,
         ]);
