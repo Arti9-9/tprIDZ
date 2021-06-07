@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Reliabilities{% endblock %}
+
+{% block body %}
+    <h1>Edit Reliabilities</h1>
+
+    {{ include('reliabilities/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('reliabilities_index') }}">back to list</a>
+
+    {{ include('reliabilities/_delete_form.html.twig') }}
+{% endblock %}

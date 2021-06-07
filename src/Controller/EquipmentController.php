@@ -108,7 +108,7 @@ class EquipmentController extends AbstractController
             'equipment' => $equipment,
             'functionalUnit' => $functionalUnit->findBy(['equipment' => $equipment]),
             'techical_index' => $indexs,
-            'reabilities' => $reliability,
+            'reliabilities' => $reliability,
             'chartTech' => $chart,
             'chartRel' => $chartRel,
         ]);

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Reliabilities{% endblock %}
+
+{% block body %}
+    <h1>Create new Reliabilities</h1>
+
+    {{ include('reliabilities/_form.html.twig') }}
+
+    <a href="{{ path('reliabilities_index') }}">back to list</a>
+{% endblock %}

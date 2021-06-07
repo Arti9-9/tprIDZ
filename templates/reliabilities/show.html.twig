@@ -1,0 +1,35 @@
+
+
+
+
+{% block body %}
+    <h1>Reliabilities</h1>
+
+    <table class="table">
+        <tbody>
+             <tr>
+                <th>Id</th>
+                <th>Value</th>
+                <th>Date</th>
+            </tr>
+            
+                 {% for reliability in reliabilities %}
+                 <tr>
+                 <td>{{reliability.id }}</td>
+                 <td>{{reliability.value }}</td>
+                 <td>{{reliability.date ?reliability.date|date('Y-m-d') : '' }}</td>
+                 <td>
+                  <a href="{{ path('reabilitiess_edit', {'id':reliability.id}) }}">edit </a>
+                  </td>
+                   <td>
+                  <a href="{{ path('reabilitiess_delete', {'id':reliability.id}) }}">delete </a>
+                  </td>
+                </tr>
+                 {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('reliabilities_index') }}">back to list</a>
+
+    {{ include('reliabilities/_delete_form.html.twig') }}
+{% endblock %}
