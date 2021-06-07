@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit TechicalIndexs{% endblock %}
+
+{% block body %}
+    <h1>Edit TechicalIndexs</h1>
+
+    {{ include('techical_indexs/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('techical_indexs_index') }}">back to list</a>
+
+    {{ include('techical_indexs/_delete_form.html.twig') }}
+{% endblock %}

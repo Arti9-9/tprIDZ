@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TechicalIndexs index{% endblock %}
+
+{% block body %}
+    <h1>TechicalIndexs index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Value</th>
+                <th>Date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for techical_index in techical_indexs %}
+            <tr>
+                <td>{{ techical_index.id }}</td>
+                <td>{{ techical_index.value }}</td>
+                <td>{{ techical_index.date ? techical_index.date|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('techical_indexs_show', {'id': techical_index.id}) }}">show</a>
+                    <a href="{{ path('techical_indexs_edit', {'id': techical_index.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('techical_indexs_new') }}">Create new</a>
+{% endblock %}
