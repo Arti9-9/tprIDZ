@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New FunctionalUnit{% endblock %}
+
+{% block body %}
+    <h1>Create new FunctionalUnit</h1>
+
+    {{ include('functional_unit/_form.html.twig') }}
+
+    <a href="{{ path('functional_unit_index') }}">back to list</a>
+{% endblock %}

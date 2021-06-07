@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FunctionalUnit index{% endblock %}
+
+{% block body %}
+    <h1>FunctionalUnit index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Weight</th>
+                <th>Appraisal</th>
+                <th>Date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for functional_unit in functional_units %}
+            <tr>
+                <td>{{ functional_unit.id }}</td>
+                <td>{{ functional_unit.name }}</td>
+                <td>{{ functional_unit.weight }}</td>
+                <td>{{ functional_unit.appraisal }}</td>
+                <td>{{ functional_unit.date ? functional_unit.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('functional_unit_show', {'id': functional_unit.id}) }}">show</a>
+                    <a href="{{ path('functional_unit_edit', {'id': functional_unit.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('functional_unit_new') }}">Create new</a>
+{% endblock %}

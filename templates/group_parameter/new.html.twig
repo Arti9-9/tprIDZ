@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New GroupParameter{% endblock %}
+
+{% block body %}
+    <h1>Create new GroupParameter</h1>
+
+    {{ include('group_parameter/_form.html.twig') }}
+
+    <a href="{{ path('group_parameter_index') }}">back to list</a>
+{% endblock %}
