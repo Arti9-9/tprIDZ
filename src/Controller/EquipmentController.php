@@ -61,7 +61,6 @@ class EquipmentController extends AbstractController
                 ],
             ],
         ]);
-
         $chart->setOptions([
             'scales' => [
                 'yAxes' => [

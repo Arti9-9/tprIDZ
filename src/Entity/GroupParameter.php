@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\GroupParameterRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +33,16 @@ class GroupParameter
      * @ORM\ManyToOne(targetEntity=FunctionalUnit::class, inversedBy="parameters")
      */
     private $functionalUnit;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ReliabilitiesIGrP::class, mappedBy="group_parametr")
+     */
+    private $reliabilitiesIGrPs;
+
+    public function __construct()
+    {
+        $this->reliabilitiesIGrPs = new ArrayCollection();
+    }
 
     public function __toString()
     {
@@ -74,6 +86,36 @@ class GroupParameter
     public function setFunctionalUnit(?FunctionalUnit $functionalUnit): self
     {
         $this->functionalUnit = $functionalUnit;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ReliabilitiesIGrP[]
+     */
+    public function getReliabilitiesIGrPs(): Collection
+    {
+        return $this->reliabilitiesIGrPs;
+    }
+
+    public function addReliabilitiesIGrP(ReliabilitiesIGrP $reliabilitiesIGrP): self
+    {
+        if (!$this->reliabilitiesIGrPs->contains($reliabilitiesIGrP)) {
+            $this->reliabilitiesIGrPs[] = $reliabilitiesIGrP;
+            $reliabilitiesIGrP->setGroupParametr($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReliabilitiesIGrP(ReliabilitiesIGrP $reliabilitiesIGrP): self
+    {
+        if ($this->reliabilitiesIGrPs->removeElement($reliabilitiesIGrP)) {
+            // set the owning side to null (unless already changed)
+            if ($reliabilitiesIGrP->getGroupParametr() === $this) {
+                $reliabilitiesIGrP->setGroupParametr(null);
+            }
+        }
 
         return $this;
     }

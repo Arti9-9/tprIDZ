@@ -50,6 +50,16 @@ class Equipment
      */
     private $units;
 
+    /**
+     * @ORM\OneToMany(targetEntity=TechicalIndexs::class, mappedBy="equipment")
+     */
+    private $techicalIndexs;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Reliabilities::class, mappedBy="equipments")
+     */
+    private $reliabilities;
+
     public function __toString()
     {
         return (string)$this->getName();
@@ -58,6 +68,8 @@ class Equipment
     public function __construct()
     {
         $this->units = new ArrayCollection();
+        $this->techicalIndexs = new ArrayCollection();
+        $this->reliabilities = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -149,6 +161,66 @@ class Equipment
             // set the owning side to null (unless already changed)
             if ($unit->getEquipment() === $this) {
                 $unit->setEquipment(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|TechicalIndexs[]
+     */
+    public function getTechicalIndexs(): Collection
+    {
+        return $this->techicalIndexs;
+    }
+
+    public function addTechicalIndex(TechicalIndexs $techicalIndex): self
+    {
+        if (!$this->techicalIndexs->contains($techicalIndex)) {
+            $this->techicalIndexs[] = $techicalIndex;
+            $techicalIndex->setEquipment($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTechicalIndex(TechicalIndexs $techicalIndex): self
+    {
+        if ($this->techicalIndexs->removeElement($techicalIndex)) {
+            // set the owning side to null (unless already changed)
+            if ($techicalIndex->getEquipment() === $this) {
+                $techicalIndex->setEquipment(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Reliabilities[]
+     */
+    public function getReliabilities(): Collection
+    {
+        return $this->reliabilities;
+    }
+
+    public function addReliability(Reliabilities $reliability): self
+    {
+        if (!$this->reliabilities->contains($reliability)) {
+            $this->reliabilities[] = $reliability;
+            $reliability->setEquipments($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReliability(Reliabilities $reliability): self
+    {
+        if ($this->reliabilities->removeElement($reliability)) {
+            // set the owning side to null (unless already changed)
+            if ($reliability->getEquipments() === $this) {
+                $reliability->setEquipments(null);
             }
         }
 
