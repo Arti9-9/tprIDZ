@@ -5,6 +5,9 @@ namespace App\Controller\Admin;
 use App\Entity\Equipment;
 use App\Entity\FunctionalUnit;
 use App\Entity\GroupParameter;
+use App\Entity\Reliabilities;
+use App\Entity\ReliabilitiesIGrP;
+use App\Entity\TechicalIndexs;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Router\CrudUrlGenerator;
@@ -32,9 +35,12 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linktoRoute('Dashboard', 'fa fa-home' ,'home');
         yield MenuItem::linkToCrud('Оборудование', 'fas fa-cog', Equipment::class);
+        yield MenuItem::linkToCrud('Тех. индекс', 'fas fa-cog', TechicalIndexs::class);
+        yield MenuItem::linkToCrud('Вероятность Рэо', 'fas fa-cog', Reliabilities::class);
         yield MenuItem::linkToCrud('Функциональный узел', 'fa fa-bar-chart', FunctionalUnit::class);
         yield MenuItem::linkTocrud('Параметры группы', 'fas fa-users', GroupParameter::class);
+        yield MenuItem::linkToCrud('Вероятность Руэо', 'fas fa-cog', ReliabilitiesIGrP::class);
+        yield MenuItem::linktoRoute('Вернуться на гл. страницу', 'fa fa-home' ,'home');
     }
 }

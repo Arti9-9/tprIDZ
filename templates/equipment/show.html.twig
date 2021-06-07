@@ -16,27 +16,19 @@
             <td>{{ equipment.description }}</td>
         </tr>
         <tr>
-            <th>Технический индекс</th>
-            <td>{{ equipment.techicalIndex }}</td>
+            <th>График тех. индекса</th>
+            <td>{{  render_chart(chartTech)  }}</td>
         </tr>
         <tr>
-            <th>Оценка</th>
-            <td>{{ equipment.reliability }}</td>
-        </tr>
-        <tr>
-            <th>Дата</th>
-            <td>{{ equipment.date ? equipment.date|date('Y-m-d H:i:s') : '' }}</td>
-        </tr>
-        <tr>
-            <th>График</th>
-            <td>{{  render_chart(chart)  }}</td>
+            <th>График Рэо</th>
+            <td>{{  render_chart(chartRel)  }}</td>
         </tr>
         </tbody>
-    </table>
 
-    <a href="{{ path('equipment_index') }}">back to list</a>
+    </table>
+    {{ include('techical_indexs/show.html.twig') }}
+    {#  <a href="{{ path('equipment_index') }}">back to list</a>
 
     <a href="{{ path('equipment_edit', {'id': equipment.id}) }}">edit</a>
-
-    {{ include('equipment/_delete_form.html.twig') }}
+    {{ include('equipment/_delete_form.html.twig') }} #}
 {% endblock %}

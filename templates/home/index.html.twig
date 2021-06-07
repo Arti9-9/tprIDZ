@@ -13,12 +13,10 @@
                 <div class="col mb-5">
                     <div class="card bg-light" style="height:350px;">
                         <div class="card-body">
-                            <a  href="{{ path('equipment_show', {'id': Equipment.id}) }}"" class="card-link ">
+                            <a  href="{{ path('equipment_show', {'id': Equipment.id}) }}" class="card-link ">
                             <h5 style="overflow-Y: auto; height:10%;">{{ Equipment.name }}</h5></a>
-                            <p>TechicalIndex:</p>
-                            <p>Reliability:</p>
                             <p class="card-text border-top border-bottom" style="overflow-Y: auto; height:45%;">{{ Equipment.description }}</p>
-                            Дата публикации:   
+                            Дата последнего теста:
                             <span class="ml-4 mb-3 card-text ">{{ Equipment.date ? Equipment.date|date('Y-m-d H:i:s') : '' }}</span>
                         </div>
                     </div>

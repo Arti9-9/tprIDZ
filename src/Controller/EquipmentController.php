@@ -7,6 +7,7 @@ use App\Entity\Equipment;
 use App\Form\EquipmentType;
 use App\Repository\EquipmentRepository;
 use App\Repository\FunctionalUnitRepository;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -50,14 +51,29 @@ class EquipmentController extends AbstractController
     public function show(Equipment $equipment, FunctionalUnitRepository $functionalUnit, ChartBuilderInterface $chartBuilder): Response
     {
         $chart = $chartBuilder->createChart(Chart::TYPE_LINE);
+        $chartRel = $chartBuilder->createChart(Chart::TYPE_LINE);
+        $indexs = $equipment->getTechicalIndexs()->getValues();
+        $reliability = $equipment->getReliabilities()->getValues();
+        $uniqDate = array();
+        $valueGraph = array();
+        $valueGraphRel = array();
+        foreach ($indexs as $index) {
+            $dateTmp = $index->getDate()->format('Y-m-d');
+            array_push($valueGraph, $index->getValue());
+            array_push($uniqDate, $dateTmp);
+        }
+        foreach ($reliability as $item) {
+            array_push($valueGraphRel,$item->getValue());
+        }
+        $uniqDate = array_unique($uniqDate);
         $chart->setData([
-            'labels' => ['2017', '2018', '2019', '2020', '2021', '2022', '2023'],
+            'labels' => $uniqDate,
             'datasets' => [
                 [
-                    'label' => $equipment->getName(),
-                    'backgroundColor' => 'rgb(255, 75, 15)',
+                    'label' => $equipment->getName().' Тех. индект',
+                    'backgroundColor' => 'rgb(255, 255, 255)',
                     'borderColor' => 'rgb(255, 99, 132)',
-                    'data' => [99.2, 98.5, 97.2, 92.5, 93.0, 92.5, 90.2],
+                    'data' => $valueGraph,
                 ],
             ],
         ]);
@@ -68,11 +84,31 @@ class EquipmentController extends AbstractController
                 ],
             ],
         ]);
+        $chartRel->setData([
+            'labels' => $uniqDate,
+            'datasets' => [
+                [
+                    'label' => $equipment->getName().' Pэо',
+                    'backgroundColor' => 'rgb(255, 255, 255)',
+                    'borderColor' => 'rgb(255, 99, 132)',
+                    'data' => $valueGraphRel,
+                ],
+            ],
+        ]);
+        $chartRel->setOptions([
+            'scales' => [
+                'yAxes' => [
+                    ['ticks' => ['min' => 0, 'max' => 1]],
+                ],
+            ],
+        ]);
 
         return $this->render('equipment/show.html.twig', [
             'equipment' => $equipment,
             'functionalUnit' => $functionalUnit->findBy(['equipment' => $equipment]),
-            'chart' => $chart,
+            'techical_index' => $indexs,
+            'chartTech' => $chart,
+            'chartRel' => $chartRel,
         ]);
     }
 
@@ -99,7 +135,7 @@ class EquipmentController extends AbstractController
     #[Route('/{id}', name: 'equipment_delete', methods: ['POST'])]
     public function delete(Request $request, Equipment $equipment): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$equipment->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $equipment->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($equipment);
             $entityManager->flush();
