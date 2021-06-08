@@ -39,6 +39,11 @@ class GroupParameter
      */
     private $reliabilitiesIGrPs;
 
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $lambda;
+
     public function __construct()
     {
         $this->reliabilitiesIGrPs = new ArrayCollection();
@@ -116,6 +121,18 @@ class GroupParameter
                 $reliabilitiesIGrP->setGroupParametr(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLambda(): ?float
+    {
+        return $this->lambda;
+    }
+
+    public function setLambda(?float $lambda): self
+    {
+        $this->lambda = $lambda;
 
         return $this;
     }

@@ -28,6 +28,7 @@
     </table>
     {{ include('techical_indexs/show.html.twig') }}
     {{ include('reliabilities/show.html.twig') }}
+    <a class="btn-info" href="{{  path('find_tech_index',{'id':equipment.id}) }}">TEST</a>
     {#  <a href="{{ path('equipment_index') }}">back to list</a>
 
     <a href="{{ path('equipment_edit', {'id': equipment.id}) }}">edit</a>

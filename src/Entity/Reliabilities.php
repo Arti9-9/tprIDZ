@@ -72,4 +72,5 @@ class Reliabilities
 
         return $this;
     }
+
 }
