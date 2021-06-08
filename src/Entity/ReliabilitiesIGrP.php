@@ -30,7 +30,7 @@ class ReliabilitiesIGrP
     /**
      * @ORM\ManyToOne(targetEntity=groupParameter::class, inversedBy="reliabilitiesIGrPs")
      */
-    private $group_parametr;
+    private ?groupParameter $group_parametr;
 
     public function getId(): ?int
     {

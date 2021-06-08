@@ -16,22 +16,28 @@ class ReliabilityEquipmentController extends AbstractController
     {
         $newReliability = new Reliabilities();
         $tmpValue = 0.0;
-        $units = $equipment->getUnits();
+        $i = 0;
+        $units = $equipment->getUnits()->getValues();
+        $diff = (new \DateTime())->diff($equipment->getDate());
         foreach ($units as $unit) {
-
             foreach ($unit->getParameters() as $parameter){
                 $reliabilityI = new ReliabilitiesIGrP();
-                $tmpPi = exp((-1.0)*$parameter->getLambda()*$parameter->getWeight());
+                $reliabilityI->setValue(exp((-1.0)*pow($parameter->getLambda(),-5)*$parameter->getWeight())*$diff->y);
+                $tmpValue += $reliabilityI->getValue();
+                $i++;
+                $reliabilityI->setDate(new \DateTime('@' . strtotime('now')));
+                $reliabilityI->setGroupParametr($parameter);
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($reliabilityI);
+                $entityManager->flush();
             }
         }
-        $newReliability->setValue($tmpValue);
-        $newReliability->setEquipment($equipment);
+        $newReliability->setValue($tmpValue/$i/10);
+        $newReliability->setEquipments($equipment);
         $newReliability->setDate(new \DateTime('@' . strtotime('now')));
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($newReliability);
         $entityManager->flush();
-        return $this->render('reliability_equipment/index.html.twig', [
-            'controller_name' => 'ReliabilityEquipmentController',
-        ]);
+        return $this->redirectToRoute('equipment_show',['id'=>$equipment->getId()]);
     }
 }

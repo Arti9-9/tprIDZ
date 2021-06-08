@@ -19,11 +19,11 @@
                  <td>{{reliability.value }}</td>
                  <td>{{reliability.date ?reliability.date|date('Y-m-d') : '' }}</td>
                  <td>
-                  <a href="{{ path('reabilitiess_edit', {'id':reliability.id}) }}">edit </a>
+                  {#  a href="{{ path('reabilitiess_edit', {'id':reliability.id}) }}">edit </a>
                   </td>
                    <td>
                   <a href="{{ path('reabilitiess_delete', {'id':reliability.id}) }}">delete </a>
-                  </td>
+                  </td>#}
                 </tr>
                  {% endfor %}
         </tbody>

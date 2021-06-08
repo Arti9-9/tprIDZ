@@ -63,9 +63,6 @@ class EquipmentController extends AbstractController
             array_push($valueGraph, $index->getValue());
             array_push($uniqDate, $dateTmp);
         }
-        foreach ($reliability as $item) {
-            array_push($valueGraphRel,$item->getValue());
-        }
         $uniqDate = array_unique($uniqDate);
         $chart->setData([
             'labels' => $uniqDate,
@@ -85,6 +82,12 @@ class EquipmentController extends AbstractController
                 ],
             ],
         ]);
+        foreach ($reliability as $item) {
+            $dateTmp = $item->getDate()->format('Y-m-d');
+            array_push($valueGraphRel,$item->getValue());
+            array_push($uniqDate, $dateTmp);
+        }
+        $uniqDate = array_unique($uniqDate);
         $chartRel->setData([
             'labels' => $uniqDate,
             'datasets' => [
