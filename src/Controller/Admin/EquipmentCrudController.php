@@ -30,7 +30,7 @@ class EquipmentCrudController extends AbstractCrudController
         return [
             TextField::new('name','Имя оборудования'),
             TextareaField::new('description', 'Описание'),
-            AssociationField::new('units', 'Связанные узлы'),
+            DateField::new('date','Дата ввода в эксплуатацию'),
         ];
     }
 

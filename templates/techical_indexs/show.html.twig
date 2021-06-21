@@ -1,6 +1,4 @@
-{% extends 'base.html.twig' %}
 
-{% block title %}TechicalIndexs{% endblock %}
 
 {% block body %}
     <h1>Технический индекс</h1>
@@ -8,9 +6,9 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <th>Value</th>
-                <th>Date</th>
+                <th>ID</th>
+                <th>Значение</th>
+                <th>Дата</th>
             </tr>
             
                  {% for index in techical_index %}
@@ -18,18 +16,18 @@
                  <td>{{ index.id }}</td>
                  <td>{{ index.value }}</td>
                  <td>{{ index.date ? index.date|date('Y-m-d') : '' }}</td>
-                 <td>
+                 {#  <td>
                   <a href="{{ path('techical_indexs_edit', {'id': index.id}) }}">edit </a>
                   </td>
                    <td>
                   <a href="{{ path('techical_indexs_delete', {'id': index.id}) }}">delete </a>
-                  </td>
+                  </td> #}
                 </tr>
                  {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('techical_indexs_index') }}">back to list</a><br>
+    {#  <a href="{{ path('techical_indexs_index') }}">back to list</a><br> #}
   
 
     
