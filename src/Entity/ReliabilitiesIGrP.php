@@ -28,7 +28,7 @@ class ReliabilitiesIGrP
     private $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity=groupParameter::class, inversedBy="reliabilitiesIGrPs")
+     * @ORM\ManyToOne(targetEntity=GroupParameter::class, inversedBy="reliabilitiesIGrPs")
      */
     private ?groupParameter $group_parametr;
 
