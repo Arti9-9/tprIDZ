@@ -1,0 +1,245 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.2
+-- Dumped by pg_dump version 13.2
+
+-- Started on 2021-06-22 12:06:06
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 2874 (class 0 OID 24804)
+-- Dependencies: 202
+-- Data for Name: doctrine_migration_versions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.doctrine_migration_versions (version, executed_at, execution_time) FROM stdin;
+DoctrineMigrations\\Version20210529143335	2021-05-30 20:44:42	102
+DoctrineMigrations\\Version20210607104057	2021-06-07 13:41:13	459
+DoctrineMigrations\\Version20210608140715	2021-06-08 17:08:41	60
+DoctrineMigrations\\Version20210608141056	2021-06-08 17:11:20	64
+\.
+
+
+--
+-- TOC entry 2878 (class 0 OID 24816)
+-- Dependencies: 206
+-- Data for Name: equipment; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.equipment (id, name, description, techical_index, reliability, date) FROM stdin;
+1	Турбина	Турбина пример	62	\N	2012-06-01 18:02:00
+2	ДВС	ДВС бензин	\N	\N	2021-06-09 00:00:00
+\.
+
+
+--
+-- TOC entry 2879 (class 0 OID 24825)
+-- Dependencies: 207
+-- Data for Name: functional_unit; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.functional_unit (id, equipment_id, name, weight, appraisal, date) FROM stdin;
+1	1	У1	0.074	65	2021-05-30 21:17:00
+2	1	У2	0.135	80	2021-05-30 21:17:00
+3	1	У3	0.135	85	2021-05-30 21:18:00
+4	1	У4	0.241	75	2021-05-30 21:18:00
+5	1	У5	0.412	70	2021-05-30 21:19:00
+\.
+
+
+--
+-- TOC entry 2880 (class 0 OID 24831)
+-- Dependencies: 208
+-- Data for Name: group_parameter; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.group_parameter (id, functional_unit_id, name, weight, lambda) FROM stdin;
+1	1	1.1	1	0.667
+2	2	2.1	0.25	1.215
+3	2	2.2	0.25	1.215
+4	2	2.3	0.25	1.215
+5	2	2.4	0.25	1.215
+6	3	3.1	0.33	1.215
+7	3	3.2	0.33	1.215
+8	3	3.3	0.33	1.215
+9	4	4.1	0.33	2.169
+10	4	4.2	0.33	2.169
+11	4	4.3	0.33	2.169
+12	5	5.1	0.25	3.735
+13	5	5.2	0.25	3.735
+14	5	5.3	0.25	3.735
+15	5	5.4	0.25	3.735
+\.
+
+
+--
+-- TOC entry 2884 (class 0 OID 32963)
+-- Dependencies: 212
+-- Data for Name: reliabilities; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.reliabilities (id, equipments_id, value, date) FROM stdin;
+4	1	0.7959993201048	2021-06-08
+3	1	0.8959993201048	2021-06-08
+5	1	0.7959993201048	2021-06-09
+6	1	0.7959993201048	2021-06-09
+\.
+
+
+--
+-- TOC entry 2885 (class 0 OID 32969)
+-- Dependencies: 213
+-- Data for Name: reliabilities_igr_p; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.reliabilities_igr_p (id, group_parametr_id, value, date) FROM stdin;
+31	1	0.0046190349035908	2021-06-08
+32	2	8.1891142871004	2021-06-08
+33	3	8.1891142871004	2021-06-08
+34	4	8.1891142871004	2021-06-08
+35	5	8.1891142871004	2021-06-08
+36	6	7.9453886825914	2021-06-08
+37	7	7.9453886825914	2021-06-08
+38	8	7.9453886825914	2021-06-08
+39	9	8.9383452059586	2021-06-08
+40	10	8.9383452059586	2021-06-08
+41	11	8.9383452059586	2021-06-08
+42	12	8.9969050416913	2021-06-08
+43	13	8.9969050416913	2021-06-08
+44	14	8.9969050416913	2021-06-08
+45	15	8.9969050416913	2021-06-08
+46	1	0.0046190349035908	2021-06-08
+47	2	8.1891142871004	2021-06-08
+48	3	8.1891142871004	2021-06-08
+49	4	8.1891142871004	2021-06-08
+50	5	8.1891142871004	2021-06-08
+51	6	7.9453886825914	2021-06-08
+52	7	7.9453886825914	2021-06-08
+53	8	7.9453886825914	2021-06-08
+54	9	8.9383452059586	2021-06-08
+55	10	8.9383452059586	2021-06-08
+56	11	8.9383452059586	2021-06-08
+57	12	8.9969050416913	2021-06-08
+58	13	8.9969050416913	2021-06-08
+59	14	8.9969050416913	2021-06-08
+60	15	8.9969050416913	2021-06-08
+61	1	0.0046190349035908	2021-06-09
+62	2	8.1891142871004	2021-06-09
+63	3	8.1891142871004	2021-06-09
+64	4	8.1891142871004	2021-06-09
+65	5	8.1891142871004	2021-06-09
+66	6	7.9453886825914	2021-06-09
+67	7	7.9453886825914	2021-06-09
+68	8	7.9453886825914	2021-06-09
+69	9	8.9383452059586	2021-06-09
+70	10	8.9383452059586	2021-06-09
+71	11	8.9383452059586	2021-06-09
+72	12	8.9969050416913	2021-06-09
+73	13	8.9969050416913	2021-06-09
+74	14	8.9969050416913	2021-06-09
+75	15	8.9969050416913	2021-06-09
+76	1	0.0046190349035908	2021-06-09
+77	2	8.1891142871004	2021-06-09
+78	3	8.1891142871004	2021-06-09
+79	4	8.1891142871004	2021-06-09
+80	5	8.1891142871004	2021-06-09
+81	6	7.9453886825914	2021-06-09
+82	7	7.9453886825914	2021-06-09
+83	8	7.9453886825914	2021-06-09
+84	9	8.9383452059586	2021-06-09
+85	10	8.9383452059586	2021-06-09
+86	11	8.9383452059586	2021-06-09
+87	12	8.9969050416913	2021-06-09
+88	13	8.9969050416913	2021-06-09
+89	14	8.9969050416913	2021-06-09
+90	15	8.9969050416913	2021-06-09
+\.
+
+
+--
+-- TOC entry 2886 (class 0 OID 32975)
+-- Dependencies: 214
+-- Data for Name: techical_indexs; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.techical_indexs (id, equipment_id, value, date) FROM stdin;
+1	1	98.2	2016-06-01
+2	1	96.2	2017-06-01
+3	1	94.2	2018-06-01
+6	1	74	2021-06-08
+7	1	74	2021-06-09
+\.
+
+
+--
+-- TOC entry 2892 (class 0 OID 0)
+-- Dependencies: 203
+-- Name: equipment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.equipment_id_seq', 2, true);
+
+
+--
+-- TOC entry 2893 (class 0 OID 0)
+-- Dependencies: 204
+-- Name: functional_unit_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.functional_unit_id_seq', 10, true);
+
+
+--
+-- TOC entry 2894 (class 0 OID 0)
+-- Dependencies: 205
+-- Name: group_parameter_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.group_parameter_id_seq', 15, true);
+
+
+--
+-- TOC entry 2895 (class 0 OID 0)
+-- Dependencies: 209
+-- Name: reliabilities_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.reliabilities_id_seq', 6, true);
+
+
+--
+-- TOC entry 2896 (class 0 OID 0)
+-- Dependencies: 210
+-- Name: reliabilities_igr_p_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.reliabilities_igr_p_id_seq', 90, true);
+
+
+--
+-- TOC entry 2897 (class 0 OID 0)
+-- Dependencies: 211
+-- Name: techical_indexs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.techical_indexs_id_seq', 7, true);
+
+
+-- Completed on 2021-06-22 12:06:08
+
+--
+-- PostgreSQL database dump complete
+--
+
